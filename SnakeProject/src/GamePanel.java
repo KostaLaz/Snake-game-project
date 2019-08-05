@@ -17,15 +17,19 @@ public class GamePanel extends JPanel implements Runnable{
 	
 	private boolean running;
 	
+	private boolean right = true, left = false, up = false, down = false;
+	
 	private BodyPart b;
 	private ArrayList<BodyPart> snake;
-	private int xColor = 10, yColor = 10, size = 5;
+	private int xCoor = 10, yCoor = 10, size = 5;
 	private int ticks = 0;
 	
 	public GamePanel() {
 		
 		setPreferredSize(new Dimension(WIDTH, HEIGHT));
 		snake = new ArrayList<BodyPart>();
+		
+		start();
 	}
 	
 	public void start() {
@@ -46,10 +50,25 @@ public class GamePanel extends JPanel implements Runnable{
 	
 	public void tick() {
 		if(snake.size() == 0) {
-			b = new BodyPart(xColor, yColor, 10);
+			b = new BodyPart(xCoor, yCoor, 10);
 			snake.add(b);
 		}
 		ticks++;
+		if(ticks > 250000) {
+			if(right) xCoor++;
+			if(left) xCoor--;
+			if(up) yCoor--;
+			if(down) yCoor++;
+			
+			ticks = 0;
+			
+			b = new BodyPart(xCoor, yCoor, 10);
+			snake.add(b);
+			
+			if(snake.size() > size) {
+				snake.remove(0);
+			}
+		}
 	}
 	
 	public void paint(Graphics g) {
