@@ -22,5 +22,23 @@ public class Apple {
 			g.setColor(Color.RED);
 			g.fillRect(xCoor * width, yCoor * height, width, height);
 		}
+
+		public int getxCoor() {
+			return xCoor;
+		}
+
+		public void setxCoor(int xCoor) {
+			this.xCoor = xCoor;
+		}
+
+		public int getyCoor() {
+			return yCoor;
+		}
+
+		public void setyCoor(int yCoor) {
+			this.yCoor = yCoor;
+		}
+		
+		
 	}
 
